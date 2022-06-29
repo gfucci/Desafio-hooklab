@@ -1,7 +1,6 @@
 # DESAFIO HOOKLAB
 
-## O objetivo deste teste é desenvolver um mini app de gestão de produtos usando o
-framework ReactJS.
+## O objetivo deste teste é desenvolver um mini app de gestão de produtos usando o framework ReactJS.
 
 ## Um produto será definido por quatro características: id, nome, marca e preço.
 
