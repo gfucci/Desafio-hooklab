@@ -8,9 +8,9 @@ import { Link } from 'react-router-dom'
 const About = () => {
 
   return (
-    <div>
+    <div className={styles.about}>
       <h1>Este projeto é um desafio da HookLab</h1>
-      <p>O projeto consiste em um gerenciador de produtos</p>
+      <p>O projeto consiste em um mini gerenciador de produtos</p>
       <Link 
         to="/products" 
         className='btn'

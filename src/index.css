@@ -7,17 +7,17 @@ body {
 
 .btn {
   padding: .6em;
-  background-color: rgb(255, 190, 190);
+  background-color: #ffbebe;
   border-radius: 8px;
   text-decoration: none;
-  color: rgb(127, 140, 252);
+  color: #7f8cfc;
   font-weight: bolder;
   border: 1px solid transparent;
 }
 
 .btn:hover {
   border: 1px solid;
-  border-color: rgb(127, 140, 252);
-  color: rgb(255, 190, 190);;
-  background-color: rgb(127, 140, 252);
+  border-color: #7f8cfc;
+  color: #ffbebe;
+  background-color: #7f8cfc;
 }

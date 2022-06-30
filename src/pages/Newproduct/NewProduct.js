@@ -11,6 +11,7 @@ const NewProduct = () => {
   const [name, setName] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState("")
+  const [image, setImage] = useState("")
   const [error, setError] = useState("")
 
   //Submit form
@@ -41,8 +42,8 @@ const NewProduct = () => {
 
   return (
     <div>
-      <h2>Cadastre um produto</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className={styles.title}>Cadastre um produto</h2>
+      <form onSubmit={handleSubmit} className={styles.form_control}>
         <label>
           <span>Código:</span>
           <input 
@@ -87,6 +88,17 @@ const NewProduct = () => {
             required 
             value={price} 
             onChange={(e) => setPrice(e.target.value)} 
+          />
+        </label>
+        <label>
+          <span>URL da imagem:</span>
+          <input 
+            type="text" 
+            name="image" 
+            placeholder='Coloque a URL da imagem do produto'
+            required 
+            value={image} 
+            onChange={(e) => setImage(e.target.value)} 
           />
         </label>
         <button type="submit" className='btn'>Cadastrar</button>
