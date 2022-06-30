@@ -1,0 +1,12 @@
+.home {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.home img {
+    width: 15%;
+    height: 10%;
+}

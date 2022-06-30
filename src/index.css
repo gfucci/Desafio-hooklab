@@ -4,3 +4,20 @@ body {
   font-family: 'Roboto Condensed', sans-serif;
   background-color: #daedf8;
 }
+
+.btn {
+  padding: .6em;
+  background-color: rgb(255, 190, 190);
+  border-radius: 8px;
+  text-decoration: none;
+  color: rgb(127, 140, 252);
+  font-weight: bolder;
+  border: 1px solid transparent;
+}
+
+.btn:hover {
+  border: 1px solid;
+  border-color: rgb(127, 140, 252);
+  color: rgb(255, 190, 190);;
+  background-color: rgb(127, 140, 252);
+}
