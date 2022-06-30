@@ -1,0 +1,16 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #EEE;
+    height: 150px;
+}
+
+.footer h2 {
+    color: rgb(125, 125, 125);
+}
+
+.footer p {
+    color: rgb(185, 185, 185);
+}
