@@ -4,10 +4,12 @@ import styles from './Products.module.css'
 //hooks
 import { Link } from 'react-router-dom'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
+import { useDeleteDocument } from '../../hooks/useDeleteDocument'
 
 const Products = () => {
 
-  const { documents: products, loading, error } = useFetchDocuments("products")
+  const { documents: products } = useFetchDocuments("products")
+  const { deleteDocument } = useDeleteDocument("products")
 
   return (
     <div className={styles.products}>
@@ -29,13 +31,13 @@ const Products = () => {
           {products &&
             products.map((product) => (
               <div className={styles.products_list} key={product.id}>
-                <p>{product.id}</p>
+                <p>{product.uid}</p>
                 <p>{product.name}</p>
                 <p>{product.brand}</p>
                 <p>R$ {product.price}</p>
                 <div>
-                  <button>EDITAR</button>
-                  <button>DELETAR</button>
+                  <button>EDITAR</button>  
+                  <button onClick={() => deleteDocument(product.id)}>DELETAR</button>
                 </div>
               </div>
             ))

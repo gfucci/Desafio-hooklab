@@ -8,12 +8,13 @@ import { useInsertDocument } from '../../hooks/useInsertDocument'
 const NewProduct = () => {
 
   //controlled inputs
-  const [id, setId] = useState("")
+  const [uid, setUid] = useState("")
   const [name, setName] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState("")
   //const [image, setImage] = useState("")
   const [formError, setFormError] = useState()
+  const [formSuccess, setFormSuccess] = useState()
 
   const { insertDocument, response } = useInsertDocument("products")
 
@@ -24,21 +25,28 @@ const NewProduct = () => {
     e.preventDefault()
 
     //validate form
-    function message(msg) {
+    function errorMessage(msg) {
       setFormError(msg)
     }
 
-    setTimeout(message, 3000)
+    function successMessage(msg) {
+      setFormSuccess(msg)
+    }
 
-    if (!id || !name || !brand || !price) {
-      message("Por favor, preencha todos os campos")
-    } else if (price == 0) {
-      message("Não aceitamos produto de graça!")
-    } else if (id == 0) {
-      message("O código do produto tem que ser maior que 0")
+    setTimeout(errorMessage, 3000)
+    setTimeout(successMessage, 3000)
+
+    if (!uid || !name || !brand || !price) {
+      errorMessage("Por favor, preencha todos os campos")
+    } else if (price === 0) {
+      errorMessage("Não aceitamos produto de graça!")
+    } else if (uid === 0) {
+      errorMessage("O código do produto tem que ser maior que 0")
     } else {
+      successMessage("Produto cadastrado com sucesso")
+
       insertDocument({
-        id,
+        uid,
         name,
         brand,
         price
@@ -46,7 +54,7 @@ const NewProduct = () => {
     }
 
     //clean inputs
-    setId("")
+    setUid("")
     setName("")
     setBrand("")
     setPrice("")
@@ -62,8 +70,8 @@ const NewProduct = () => {
             type="number" 
             name="id" 
             placeholder='Digite o id do produto'
-            value={id} 
-            onChange={(e) => setId(e.target.value)} 
+            value={uid} 
+            onChange={(e) => setUid(e.target.value)} 
           />
         </label>
         <label>
@@ -111,7 +119,8 @@ const NewProduct = () => {
         </label>*/}
         {!response.loading && <button type="submit" className='btn'>Cadastrar</button>}
         {response.loading && <button type="submit" className='btn' disabled>Cadastrando...</button>}
-        {response.error || formError && (<p className='error'>{response.error || formError}</p>)}
+        {(response.error || formError) && (<p className='error'>{response.error || formError}</p>)}
+        {formSuccess && (<p className='success'>{formSuccess}</p>)}
       </form>
     </div>
   )
