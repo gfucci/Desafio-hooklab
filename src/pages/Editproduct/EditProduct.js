@@ -1,9 +1,10 @@
 import styles from './EditProduct.module.css'
 
 //hooks
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useFetchDocument } from '../../hooks/useFetchDocument'
+import { useUpdateDocument } from '../../hooks/useUpdateDocument'
 
 const EditProduct = () => {
 
@@ -17,16 +18,66 @@ const EditProduct = () => {
 
     const { id } = useParams()
     const { document: product } = useFetchDocument("products", id)
+    const { updateDocument, response } = useUpdateDocument("products")
 
-    console.log(product)
+    const handleSubmit = (e) => {
+        setFormError("")
+    
+        e.preventDefault()
 
-    function handleSubmit() {
+        const data = {
+            uid,
+            name,
+            brand,
+            price
+        }
+    
+        //form messages
+        function errorMessage(msg) {
+          setFormError(msg)
+        }
+    
+        function successMessage(msg) {
+          setFormSuccess(msg)
+        }
+    
+        setTimeout(errorMessage, 3000)
+        setTimeout(successMessage, 3000)
+    
+        //validate form
+        if (!uid || !name || !brand || !price) {
+          errorMessage("Por favor, preencha todos os campos")
+        } else if (price === 0) {
+          errorMessage("Não aceitamos produto de graça!")
+        } else if (uid === 0) {
+          errorMessage("O código do produto tem que ser maior que 0")
+        } else {
+          successMessage("Produto atualizado com sucesso")
+    
+          updateDocument(id, data)
+    
+          //clean inputs
+          setUid("")
+          setName("")
+          setBrand("")
+          setPrice("")
+        }
+      }
 
-    }
+    useEffect(() => {
+        
+        if (product) {
+            setUid(product.uid)
+            setName(product.name)
+            setBrand(product.brand)
+            setPrice(product.price)
+        }
+
+    }, [product])
 
     return (
         <div>
-          <h2 className={styles.title}>Editando o produto: {product.name}</h2>
+          <h2 className={styles.title}>Edite seu produto</h2>
           <form onSubmit={handleSubmit} className={styles.form_control}>
             <label>
               <span>Código:</span>
@@ -70,10 +121,10 @@ const EditProduct = () => {
                 onChange={(e) => setPrice(e.target.value)} 
               />
             </label>
-            {/*{!response.loading && <button type="submit" className='btn'>Cadastrar</button>}
-            {response.loading && <button type="submit" className='btn' disabled>Cadastrando...</button>}
+            {!response.loading && <button type="submit" className='btn'>Atualizar</button>}
+            {response.loading && <button type="submit" className='btn' disabled>Atualizando...</button>}
             {(response.error || formError) && (<p className='error'>{response.error || formError}</p>)}
-            {formSuccess && (<p className='success'>{formSuccess}</p>)}*/}
+            {formSuccess && (<p className='success'>{formSuccess}</p>)}
           </form>
         </div>
       )
