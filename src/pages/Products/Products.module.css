@@ -1,0 +1,14 @@
+.products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.products_list,
+.title_table {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}

@@ -2,7 +2,7 @@
 import styles from './NewProduct.module.css'
 
 //hooks
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useInsertDocument } from '../../hooks/useInsertDocument'
 
 const NewProduct = () => {

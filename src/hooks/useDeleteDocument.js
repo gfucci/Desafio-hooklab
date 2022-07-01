@@ -1,6 +1,6 @@
 //firebase
 import { db } from "../firebase/config";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 
 //hooks
 import { useReducer } from "react";
@@ -10,7 +10,7 @@ const initialState = {
     loading: null
 }
 
-const insertReducer = (state, action) => {
+const deleteReducer = (state, action) => {
 
     switch(action.type) {
         case "LOADING":
@@ -18,7 +18,7 @@ const insertReducer = (state, action) => {
                 loading: true,
                 error: null
             }
-        case "INSERTED_DOC":
+        case "DELETED_DOC":
             return {
                 loading: false,
                 error: null
@@ -33,28 +33,25 @@ const insertReducer = (state, action) => {
     }
 }
 
-export const useInsertDocument = (docCollection) => {
+export const useDeleteDocument = (docCollection) => {
 
-    const [response, dispatch] = useReducer(insertReducer, initialState)
+    const [response, dispatch] = useReducer(deleteReducer, initialState)
 
     const actionDispatch = (action) => {
         dispatch(action)
     }
 
-    const insertDocument = async (document) => {
+    const deleteDocument = async (id) => {
 
         try { 
 
-            const newDocument = {...document, createdAt: Timestamp.now()}
-
-            const insertedDoc = await addDoc(
-                collection(db, docCollection),
-                newDocument
+            const deletedDocument = await deleteDoc(
+                doc(db, docCollection, id),
             )
 
             actionDispatch({
-                type: "INSERTED_DOC",
-                payload: insertedDoc
+                type: "DELETED_DOC",
+                payload: deletedDocument
             })
 
         } catch (error) {
@@ -66,5 +63,5 @@ export const useInsertDocument = (docCollection) => {
         }
     }         
 
-    return { insertDocument, response }
+    return { deleteDocument, response }
 }

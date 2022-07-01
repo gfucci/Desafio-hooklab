@@ -11,7 +11,7 @@ const Home = () => {
     <div className={styles.home}>
       <h1>Bem-Vindo ao seu gerenciador de produtos</h1>
       <img src={img} alt="logo" />
-      <Link to="/newproduct" className='btn'>Criar Produto</Link>
+      <Link to="/newproduct" className='btn'>Cadastrar Produto</Link>
     </div>
   )
 }

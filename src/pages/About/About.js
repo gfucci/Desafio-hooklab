@@ -15,7 +15,7 @@ const About = () => {
         to="/products" 
         className='btn'
       >
-        Cadastrar Produto
+        Gerenciar Produtos
       </Link>
       <p>Código do Projeto</p>
       <a 
