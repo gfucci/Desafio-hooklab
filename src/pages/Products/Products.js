@@ -36,8 +36,8 @@ const Products = () => {
                 <p>{product.brand}</p>
                 <p>R$ {product.price}</p>
                 <div>
-                  <button>EDITAR</button>  
-                  <button onClick={() => deleteDocument(product.id)}>DELETAR</button>
+                  <Link to={`/products/edit/${product.id}`} className='btn_edit'>Editar</Link>
+                  <button className='btn_remove' onClick={() => deleteDocument(product.id)}>Excluir</button>
                 </div>
               </div>
             ))

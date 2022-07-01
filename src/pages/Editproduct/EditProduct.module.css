@@ -1,0 +1,39 @@
+.title {
+    text-align: center;
+    margin-bottom: 1em;
+    color: #464646;
+    font-size: 2em;
+}
+
+.form_control {
+	max-width: 20%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form_control button {
+    margin-top: 1em;
+    text-align: center;
+    font-size: 1em;
+}
+
+.form_control label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.2em;
+}
+
+.form_control label span {
+    margin-bottom: .4em;
+    font-weight: bold;
+    color: #464646;
+    text-align: left;
+}
+
+.form_control input {
+    box-sizing: border-box;
+    height: 25px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #BBB;
+}

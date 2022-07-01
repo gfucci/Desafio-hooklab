@@ -15,12 +15,45 @@ body {
   border: 1px solid transparent;
 }
 
+.btn_remove {
+  padding: .6em .8em;
+  background-color: transparent;
+  text-decoration: none;
+  color: #000;
+  font-weight: bolder;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+
+.btn_edit {
+  padding: .4em .8em;
+  background-color: transparent;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  border: 1px solid #000;
+}
+
+.btn_edit:hover {
+  border: 1px solid;
+  color: #FFF;
+  background-color: #000;
+  transition: .500s;
+}
+
+.btn_remove:hover {
+  border: 1px solid;
+  color: #FFF;
+  background-color: rgb(131, 0, 0);
+  transition: .500s;
+}
+
 .btn:hover {
   border: 1px solid;
   border-color: #7f8cfc;
   color: #ffbebe;
   background-color: #7f8cfc;
-  transition: 1s;
+  transition: .500s;
 }
 
 .error {

@@ -13,6 +13,7 @@ import Home from './pages/Home/Home';
 import Products from './pages/Products/Products';
 import NewProduct from './pages/Newproduct/NewProduct';
 import About from './pages/About/About';
+import EditProduct from './pages/Editproduct/EditProduct';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path='/products' element={<Products />} />
             <Route path='/newproduct' element={<NewProduct />} />
             <Route path='/about' element={<About />} />
+            <Route path='/products/edit/:id' element={<EditProduct />} />
           </Routes>
         </div>
         <Footer />
