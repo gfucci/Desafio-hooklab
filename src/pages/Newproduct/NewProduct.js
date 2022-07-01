@@ -12,7 +12,6 @@ const NewProduct = () => {
   const [name, setName] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState("")
-  //const [image, setImage] = useState("")
   const [formError, setFormError] = useState()
   const [formSuccess, setFormSuccess] = useState()
 
@@ -24,7 +23,7 @@ const NewProduct = () => {
 
     e.preventDefault()
 
-    //validate form
+    //form messages
     function errorMessage(msg) {
       setFormError(msg)
     }
@@ -35,6 +34,8 @@ const NewProduct = () => {
 
     setTimeout(errorMessage, 3000)
     setTimeout(successMessage, 3000)
+
+    //validate form
 
     if (!uid || !name || !brand || !price) {
       errorMessage("Por favor, preencha todos os campos")
@@ -51,13 +52,13 @@ const NewProduct = () => {
         brand,
         price
       })
-    }
 
-    //clean inputs
-    setUid("")
-    setName("")
-    setBrand("")
-    setPrice("")
+      //clean inputs
+      setUid("")
+      setName("")
+      setBrand("")
+      setPrice("")
+    }
   }
 
   return (
@@ -106,17 +107,6 @@ const NewProduct = () => {
             onChange={(e) => setPrice(e.target.value)} 
           />
         </label>
-        {/*<label>
-          <span>URL da imagem:</span>
-          <input 
-            type="text" 
-            name="image" 
-            placeholder='Coloque a URL da imagem do produto'
-            required 
-            value={image} 
-            onChange={(e) => setImage(e.target.value)} 
-          />
-        </label>*/}
         {!response.loading && <button type="submit" className='btn'>Cadastrar</button>}
         {response.loading && <button type="submit" className='btn' disabled>Cadastrando...</button>}
         {(response.error || formError) && (<p className='error'>{response.error || formError}</p>)}
