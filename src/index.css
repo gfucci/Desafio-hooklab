@@ -20,4 +20,14 @@ body {
   border-color: #7f8cfc;
   color: #ffbebe;
   background-color: #7f8cfc;
+  transition: 1s;
+}
+
+.error {
+  padding: .8em;
+  background-color: #ffbebe;
+  color: #6d0101;
+  font-weight: bold;
+  font-size: 1em;
+  border-radius: 10px;
 }

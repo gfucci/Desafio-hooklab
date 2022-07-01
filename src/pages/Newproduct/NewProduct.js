@@ -2,7 +2,8 @@
 import styles from './NewProduct.module.css'
 
 //hooks
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useInsertDocument } from '../../hooks/useInsertDocument'
 
 const NewProduct = () => {
 
@@ -11,24 +12,37 @@ const NewProduct = () => {
   const [name, setName] = useState("")
   const [brand, setBrand] = useState("")
   const [price, setPrice] = useState("")
-  const [image, setImage] = useState("")
-  const [error, setError] = useState("")
+  //const [image, setImage] = useState("")
+  const [formError, setFormError] = useState()
+
+  const { insertDocument, response } = useInsertDocument("products")
 
   //Submit form
   const handleSubmit = (e) => {
-    setError("")
+    setFormError("")
 
     e.preventDefault()
 
-    const products = {
-      id,
-      name,
-      brand,
-      price
+    //validate form
+    function message(msg) {
+      setFormError(msg)
     }
 
-    if (error) {
-      setError("Por favor colocar um preço maior que 0")
+    setTimeout(message, 3000)
+
+    if (!id || !name || !brand || !price) {
+      message("Por favor, preencha todos os campos")
+    } else if (price == 0) {
+      message("Não aceitamos produto de graça!")
+    } else if (id == 0) {
+      message("O código do produto tem que ser maior que 0")
+    } else {
+      insertDocument({
+        id,
+        name,
+        brand,
+        price
+      })
     }
 
     //clean inputs
@@ -36,8 +50,6 @@ const NewProduct = () => {
     setName("")
     setBrand("")
     setPrice("")
-
-    console.log(products)
   }
 
   return (
@@ -47,10 +59,9 @@ const NewProduct = () => {
         <label>
           <span>Código:</span>
           <input 
-            type="text" 
+            type="number" 
             name="id" 
-            placeholder='Digite o id do produto' 
-            required 
+            placeholder='Digite o id do produto'
             value={id} 
             onChange={(e) => setId(e.target.value)} 
           />
@@ -61,7 +72,6 @@ const NewProduct = () => {
             type="text" 
             name="name" 
             placeholder='Digite o nome do produto' 
-            required 
             value={name} 
             onChange={(e) => setName(e.target.value)} 
           />
@@ -72,7 +82,6 @@ const NewProduct = () => {
             type="text" 
             name="brand" 
             placeholder='Digite a marca do produto' 
-            required 
             value={brand} 
             onChange={(e) => setBrand(e.target.value)} 
           />
@@ -85,12 +94,11 @@ const NewProduct = () => {
             placeholder='Digite o preço do produto'
             min="0.00"
             step="0.01"
-            required 
             value={price} 
             onChange={(e) => setPrice(e.target.value)} 
           />
         </label>
-        <label>
+        {/*<label>
           <span>URL da imagem:</span>
           <input 
             type="text" 
@@ -100,8 +108,10 @@ const NewProduct = () => {
             value={image} 
             onChange={(e) => setImage(e.target.value)} 
           />
-        </label>
-        <button type="submit" className='btn'>Cadastrar</button>
+        </label>*/}
+        {!response.loading && <button type="submit" className='btn'>Cadastrar</button>}
+        {response.loading && <button type="submit" className='btn' disabled>Cadastrando...</button>}
+        {response.error || formError && (<p className='error'>{response.error || formError}</p>)}
       </form>
     </div>
   )
