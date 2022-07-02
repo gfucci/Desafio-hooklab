@@ -41,8 +41,8 @@ const NewProduct = () => {
       errorMessage("Por favor, preencha todos os campos")
     } else if (price === 0) {
       errorMessage("Não aceitamos produto de graça!")
-    } else if (uid === 0) {
-      errorMessage("O código do produto tem que ser maior que 0")
+    } else if (uid === 0 || uid >= 10000) {
+      errorMessage("O código do produto tem que ser maior que 0 e menor que 9999")
     } else {
       successMessage("Produto cadastrado com sucesso")
 
@@ -68,7 +68,7 @@ const NewProduct = () => {
         <label>
           <span>Código:</span>
           <input 
-            type="number" 
+            type="number"
             name="id" 
             placeholder='Digite o id do produto'
             value={uid} 

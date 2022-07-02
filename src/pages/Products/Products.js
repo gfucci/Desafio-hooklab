@@ -2,7 +2,7 @@
 import styles from './Products.module.css'
 
 //hooks
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 import { useDeleteDocument } from '../../hooks/useDeleteDocument'
 
@@ -11,6 +11,7 @@ const Products = () => {
   const { documents: products } = useFetchDocuments("products")
   const { deleteDocument } = useDeleteDocument("products")
 
+  const navigate = useNavigate()
 
   return (
     <div className={styles.products}>
@@ -23,22 +24,22 @@ const Products = () => {
       ) : (
         <div className={styles.title_table}>
             <span>Código</span>
-            <span className={styles.align_span}>Produto</span>
-            <span className={styles.align_span}>Marca</span>
-            <span className={styles.align_span}>Preço</span>
-            <span className={styles.align_span}>Ações</span>
+            <span>Produto</span>
+            <span>Marca</span>
+            <span>Preço</span>
+            <span>Ações</span>
         </div>
       )}
 
       {products &&
         products.map((product) => (
           <div className={styles.products_list} key={product.id}>
-              <p className={styles.align_uid}>{product.uid}</p>
-              <p className={styles.align_name}>{product.name}</p>
-              <p className={styles.align_brand}>{product.brand}</p>
-              <p className={styles.align_price}>R$ {product.price}</p>
+              <p>{product.uid}</p>
+              <p>{product.name}</p>
+              <p>{product.brand}</p>
+              <p>R$ {product.price}</p>
             <div>
-              <Link to={`/products/edit/${product.id}`} className='btn_edit'>Editar</Link>
+              <button className="btn_edit" onClick={() => navigate(`/products/edit/${product.id}`)}>Editar</button>
               <button className='btn_remove' onClick={() => deleteDocument(product.id)}>Excluir</button>
             </div>
           </div>

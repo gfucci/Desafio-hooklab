@@ -12,6 +12,7 @@
   
 .noposts p {
     margin-bottom: 1.5em;
+    color: #7c7c7c;
 }
   
 .noposts a {
@@ -21,31 +22,10 @@
 .title_table {
     width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 10px;
     border-bottom: 2px solid #000;
     font-weight: bold;
-}
-
-.align_span {
-    margin-right: 30px;
-}
-
-.align_uid {
-    margin-left: 15px;
-}
-
-.align_name {
-    margin-left: 30px;
-}
-
-.align_brand {
-    position: relative;
-    padding-left: 90px;
-}
-
-.align_price {
-    margin-left: 15px;
 }
 
 .products_list {
@@ -53,13 +33,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    position: relative;
+    left: 94px;
 }
 
 .products_list button,
 .products_list a {
-  margin: 0 5px;
   height: 30px;
   width: 100px;
   font-size: 0.7em;
+  position: relative;
+  right: 90px;
+  margin-right: 5px;
 }
